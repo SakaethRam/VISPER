@@ -1,6 +1,6 @@
 # VISPER - Context-Aware Transcription and Translation System
 
-VISPER is an advanced audio processing tool that combines OpenAI's Whisper model with signal analysis using Librosa to generate highly detailed transcriptions with contextual tagging. Additionally, VISPER provides seamless audio translation, converting spoken language into English with accurate timestamps and formatting.
+VISPER offers a powerful two-stage audio processing solution. First, the VISPER Transcription Model, built upon OpenAI's Whisper and enhanced with Librosa signal analysis, generates highly detailed transcriptions with contextual tagging, accurate timestamps, and formatting. Subsequently, the VISPER Translation Model, also leveraging OpenAI's Whisper, takes these precisely transcribed files as input to provide advanced translation between any two languages, preserving the original timestamps and formatting for seamless integration.
 
 ---
 
