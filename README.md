@@ -1,6 +1,6 @@
-# VISPER - Context-Aware Audio Transcription System
+# VISPER - Context-Aware Transcription and Translation System
 
-VISPER is an intelligent audio transcription tool that combines OpenAI's Whisper model with signal processing using Librosa to produce detailed and context-enriched transcripts. It transcribes speech from audio files and identifies musical or silent segments based on audio signal analysis.
+VISPER is an advanced audio processing tool that combines OpenAI's Whisper model with signal analysis using Librosa to generate highly detailed transcriptions with contextual tagging. Additionally, VISPER provides seamless audio translation, converting spoken language into English with accurate timestamps and formatting.
 
 ---
 
@@ -8,13 +8,15 @@ VISPER is an intelligent audio transcription tool that combines OpenAI's Whisper
 
 ---
 
+
 ## Features
 
-- Automated speech transcription using Whisper.
-- Audio signal analysis with Librosa for tempo and beat tracking.
-- Context tagging for [Chorus], [OST], and silent regions.
-- Timestamped segment-wise transcription.
-- Energy-based background audio detection.
+- Speech-to-Text Transcription using Whisper.
+- Background Sound Detection (e.g., Chorus, OST) using Librosa.
+- Timestamped Segmentation of transcribed text.
+- Audio Energy Analysis to classify silence, music, and speech.
+- Speech Translation to English from multiple source languages.
+- Highly Modular and Easy-to-Use Notebooks for both tasks.
 
 ---
 
@@ -22,6 +24,7 @@ VISPER is an intelligent audio transcription tool that combines OpenAI's Whisper
 
 ```
 ├── VISPER - Transcription Model (Whisper).ipynb
+├── VISPER - Translation Model (Whisper).ipynb
 ├── requirements.txt
 ├── Dockerfile
 └── README.md
@@ -29,7 +32,7 @@ VISPER is an intelligent audio transcription tool that combines OpenAI's Whisper
 
 ---
 
-## Installation (Local)
+## Installation
 
 1. **Clone the Repository**
 ```bash
@@ -42,27 +45,30 @@ cd VISPER
 pip install -r requirements.txt
 ```
 
-3. **Run the Notebook**
-Open the notebook using Jupyter:
+3. **Run the Notebooks**
+Launch Jupyter Notebook:
 ```bash
 jupyter notebook
 ```
+Open and execute:
+- `VISPER - Transcription Model (Whisper).ipynb` for context-rich transcription.
+- `VISPER - Translation Model (Whisper).ipynb` for language translation of audio.
 
 ---
 
 ## Running with Docker
 
-### Build the Docker image
+### Build the Docker Image
 ```bash
 docker build -t visper .
 ```
 
-### Run the container
+### Run the Container
 ```bash
 docker run -p 8888:8888 visper
 ```
 
-Then open the link provided in your terminal (e.g., `http://127.0.0.1:8888/?token=...`) to access the Jupyter notebooks in your browser.
+Access the notebooks via the link shown in your terminal (e.g., `http://127.0.0.1:8888/?token=...`).
 
 ---
 
@@ -73,10 +79,9 @@ Then open the link provided in your terminal (e.g., `http://127.0.0.1:8888/?toke
 - Librosa
 - NumPy
 - IPython
-- Google Colab (for notebook usage)
+- Google Colab or Local Jupyter
 
-Make sure to have a `requirements.txt` with the following:
-
+Required packages (in `requirements.txt`):
 ```
 openai-whisper
 librosa
@@ -85,7 +90,26 @@ ipython
 jupyter
 ```
 
-### Dockerfile
+---
+
+## Usage Overview
+
+### 1. Transcription Model
+- Upload an audio file.
+- VISPER transcribes it.
+- Audio is analyzed for energy and beat tracking.
+- Non-verbal segments are automatically tagged as [Chorus] or [OST].
+- Final output is a well-formatted, timestamped transcription.
+
+### 2. Translation Model
+- Upload an audio file.
+- Choose source language manually (optional if automatic detection).
+- Whisper translates the audio content to English.
+- Final output is a clean English transcription.
+
+---
+
+## Dockerfile
 
 ```dockerfile
 # Use an official Python image
@@ -94,10 +118,10 @@ FROM python:3.10-slim
 # Set working directory
 WORKDIR /app
 
-# Copy project files
+# Copy all project files
 COPY . /app
 
-# Install system packages
+# Install necessary system packages
 RUN apt-get update && apt-get install -y git ffmpeg && \
     rm -rf /var/lib/apt/lists/*
 
@@ -107,7 +131,7 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Expose Jupyter port
 EXPOSE 8888
 
-# Launch Jupyter
+# Run Jupyter Notebook
 CMD ["jupyter", "notebook", "--ip=0.0.0.0", "--port=8888", "--no-browser", "--allow-root"]
 ```
 
@@ -119,7 +143,7 @@ Contributions are welcome. To contribute:
 1. Fork the repository.
 2. Create a feature branch.
 3. Implement your changes.
-4. Submit a pull request with a clear explanation of the modifications.
+4. Submit a pull request with a clear description.
 
 ---
 
@@ -129,5 +153,4 @@ MIT License
 
 ---
 
-Built by `S A M` – Combining language understanding with audio intelligence.
-
+Built by `S A M` – Elevating audio intelligence with transcription and translation.
