@@ -147,10 +147,4 @@ Contributions are welcome. To contribute:
 
 ---
 
-## License
-
-MIT License
-
----
-
 Built by `S A M` – Elevating audio intelligence with transcription and translation.
